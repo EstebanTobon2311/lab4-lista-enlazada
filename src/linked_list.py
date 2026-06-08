@@ -49,8 +49,18 @@ class LinkedList:
         Args:
             data: El valor a insertar.
         """
-        raise NotImplementedError("Equipo A debe implementar append()")
+        new_node = Node(data)
 
+        if self.head is None:
+            self.head = new_node
+            return
+
+        current = self.head
+
+        while current.next is not None:
+            current = current.next
+
+        current.next = new_node
     # ------------------------------------------------------------------ #
     # TODO — Equipo B: rama feature/delete                                #
     # ------------------------------------------------------------------ #
@@ -63,7 +73,26 @@ class LinkedList:
         Returns:
             True si el nodo fue eliminado, False si no se encontró.
         """
-        raise NotImplementedError("Equipo B debe implementar delete()")
+        # Caso 1: lista vacía → retornar False
+        if self.head is None:
+            return False
+        
+        # Caso 2: el nodo a eliminar ES head
+        if self.head.data == data:
+            self.head = self.head.next  # avanzar head al siguiente
+            return True
+        
+        # Caso 3: el nodo está en medio o al final
+        current = self.head
+        while current.next is not None:
+            if current.next.data == data:
+                current.next = current.next.next  # saltarse el nodo
+                return True
+            current = current.next
+        
+        # No encontrado
+        return False
+
 
     # ------------------------------------------------------------------ #
     # TODO — Equipo C: rama feature/search                                #

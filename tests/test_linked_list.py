@@ -24,7 +24,6 @@ def test_lista_vacia_len():
 def test_node_repr():
     n = Node(42)
     assert repr(n) == "Node(42)"
-    
 
 # ------------------------------------------------------------------ #
 # Pruebas Equipo C — search                                           #
@@ -57,3 +56,68 @@ def test_search_ultimo_elemento():
     nodo = ll.search(3)
     assert nodo is not None
     assert nodo.data == 3
+
+
+# ------------------------------------------------------------------ #
+# Pruebas Equipo B — delete                                          #
+# ------------------------------------------------------------------ #
+
+def test_delete_elemento_existente():
+    """Eliminar un elemento del medio"""
+    ll = LinkedList()
+    ll.append(1)
+    ll.append(2)
+    ll.append(3)
+    resultado = ll.delete(2)
+    assert resultado is True
+    assert str(ll) == "1 -> 3"
+
+
+def test_delete_head():
+    """Eliminar el primer elemento (head)"""
+    ll = LinkedList()
+    ll.append(10)
+    ll.append(20)
+    ll.delete(10)
+    assert ll.head.data == 20
+
+
+def test_delete_elemento_inexistente():
+    """Intentar eliminar algo que no existe"""
+    ll = LinkedList()
+    ll.append(5)
+    resultado = ll.delete(99)
+    assert resultado is False
+    assert len(ll) == 1
+
+
+def test_delete_lista_vacia():
+    """Eliminar de una lista vacía"""
+    ll = LinkedList()
+    assert ll.delete(1) is False
+
+
+# ------------------------------------------------------------------ #
+# Pruebas Equipo A - append
+# ------------------------------------------------------------------ #
+
+def test_append_lista_vacia():
+    ll = LinkedList()
+
+    ll.append(10)
+
+    assert ll.head.data == 10
+    assert len(ll) == 1
+
+
+def test_append_varios_elementos():
+    ll = LinkedList()
+
+    ll.append(10)
+    ll.append(20)
+    ll.append(30)
+
+    assert str(ll) == "10 -> 20 -> 30"
+    assert len(ll) == 3
+
+
