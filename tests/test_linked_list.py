@@ -25,6 +25,38 @@ def test_node_repr():
     n = Node(42)
     assert repr(n) == "Node(42)"
 
+# ------------------------------------------------------------------ #
+# Pruebas Equipo C — search                                           #
+# ------------------------------------------------------------------ #
+
+def test_search_elemento_existente():
+    ll = LinkedList()
+    ll.append(10)
+    ll.append(20)
+    nodo = ll.search(10)
+    assert nodo is not None
+    assert nodo.data == 10
+
+
+def test_search_elemento_inexistente():
+    ll = LinkedList()
+    ll.append(5)
+    assert ll.search(99) is None
+
+
+def test_search_lista_vacia():
+    ll = LinkedList()
+    assert ll.search(1) is None
+
+
+def test_search_ultimo_elemento():
+    ll = LinkedList()
+    for v in [1, 2, 3]:
+        ll.append(v)
+    nodo = ll.search(3)
+    assert nodo is not None
+    assert nodo.data == 3
+
 
 # ------------------------------------------------------------------ #
 # Pruebas Equipo B — delete                                          #
@@ -87,4 +119,5 @@ def test_append_varios_elementos():
 
     assert str(ll) == "10 -> 20 -> 30"
     assert len(ll) == 3
+
 
